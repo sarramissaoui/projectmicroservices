@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package chambre;
+
+message Chambre {
+  string id = 1;
+  string nom = 2;
+  string description = 3;
+  string qualite = 4;  
+}
+
+message CreateChambreRequest {
+  string nom = 1;
+  string description = 2;
+  string qualite = 3;  
+}
+
+message CreateChambreResponse {
+  Chambre chambre = 1;
+}
+
+message UpdateChambreRequest {
+  string id = 1;
+  string nom = 2;
+  string description = 3;
+  string qualite=4;
+}
+
+message UpdateChambreResponse {
+  Chambre chambre = 1;
+}
+
+message DeleteChambreRequest {
+  string id = 1;
+}
+
+message DeleteChambreResponse {
+  string message = 1;
+}
+
+service ChambreService {
+  rpc CreateChambre(CreateChambreRequest) returns (CreateChambreResponse);
+  rpc UpdateChambre(UpdateChambreRequest) returns (UpdateChambreResponse);
+  rpc DeleteChambre(DeleteChambreRequest) returns (DeleteChambreResponse);
+}

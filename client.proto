@@ -1,0 +1,52 @@
+//client.proto
+syntax = "proto3"; // Utilisez la syntaxe Proto3
+package client;
+
+// Définition des messages
+message Client {
+  string id = 1;
+  string nom = 2;
+  string email = 3;
+  string password = 4;
+}
+
+message GetClientRequest {
+  string client_id = 1; // Identifiant du client
+}
+
+message GetClientResponse {
+  Client client = 1; // Le client obtenu
+}
+
+message CreateClientRequest {
+  string nom = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message CreateClientResponse {
+  Client client = 1; // Le client créé
+}
+message DeleteClientRequest {
+  string client_id = 1; // Identifiant du client à supprimer
+}
+
+message DeleteClientResponse {
+  string message = 1; // Message de confirmation
+}
+message UpdateClientRequest {
+  string client_id = 1; // Identifiant du client à mettre à jour
+  string nom = 2;
+  string email = 3;
+  string password = 4;
+}
+
+message UpdateClientResponse {
+  Client client = 1; // Le client mis à jour
+}
+service ClientService {
+  rpc GetClient(GetClientRequest) returns (GetClientResponse); // Obtenir un client
+  rpc CreateClient(CreateClientRequest) returns (CreateClientResponse); // Créer un client
+  rpc DeleteClient(DeleteClientRequest) returns (DeleteClientResponse); // Supprimer un client
+  rpc UpdateClient(UpdateClientRequest) returns (UpdateClientResponse);
+}
